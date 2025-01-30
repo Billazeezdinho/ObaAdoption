@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "adoption": "file:",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mysql2": "^3.12.0"
+  },
+  "name": "adoption",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "db:create": "sequelize db:create",
+    "db:undo:create": "sequelize db:create:undo",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:undo:migrate": "npx sequelize-cli db:migrate:undo",
+    "seeding": "npx sequelize-cli db:seed:all",
+    "undo:seeding": "npx sequelize-cli db:seed:undo",
+    "generate:model": "npx sequelize-cli migration:generate --name create-product",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cli": "^1.0.1",
+    "sequelize": "^6.37.5",
+    "sequelize-cli": "^6.6.2"
+  },
+  "description": ""
+}
