@@ -1,6 +1,6 @@
 const { Pet } = require('../models/pet');
 
-
+// exports.createPet = async (req, res)=>
 exports.getAllPets = async (req, res) => {
   try {
     const pets = await Pet.findAll();

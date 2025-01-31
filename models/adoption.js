@@ -1,28 +1,23 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class adoption extends Model {
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const sequelize = require('../database/sequelize')
+const Pet = require('./pet');
 
-  }
+  class adoption extends Model {}
+
   adoption.init({
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER,
-      allowNull:false,
+      type: DataTypes.INTEGER
     },
     pet_id: {
       type: DataTypes.INTEGER,
       allowNull:false,
-      references:{
-        model: 'Pet',
-        key: 'id',
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-      }
+        references: {
+          model: Pet, 
+          key: 'id'
+        }
     },
     applicant_name: {
       type: DataTypes.STRING,
@@ -44,6 +39,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'adoption',
+    tableName: 'adoptions',
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    timestamps: true,
   });
-  return adoption;
-};
+
+  module.exports = adoption;

@@ -1,48 +1,53 @@
-'use strict';
-/** @type {import('sequelize-cli').Migration} */
+"use strict";
+
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('adoption', {
+    await queryInterface.createTable("adoptions", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        allowNull:false
       },
-      pet_id: {
-        type: Sequelize.INTEGER,
-        allowNull:false,
-        onDelete:"CASCADE",
-        onUpdate:"CASCADE"
+      pet_id:{
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: {
+            model: "pets",
+            key: "id"
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
       applicant_name: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: false,
       },
       applicant_email: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: false,
       },
-      location:{
-        type:Sequelize.STRING,
-        allowNull: false
+      location: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       status: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull: false,
+        defaultValue: "Pending",
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
+
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('adoption');
-  }
+    await queryInterface.dropTable("adoptions");
+  },
 };
